@@ -34,7 +34,63 @@ fn main() {
     // secret_word by doing secret_word_chars[i].
     let secret_word_chars: Vec<char> = secret_word.chars().collect();
     // Uncomment for debugging:
-    // println!("random word: {}", secret_word);
+    println!("random word: {}", secret_word);
 
     // Your code here! :)
+    let mut guess_count: u32 = 0;
+    let mut guess_word_chars: Vec<char> = vec!['-'; secret_word_chars.len()];
+    let mut guess_chars: Vec<char> = Vec::new();
+
+    println!("Welcome to CS110L Hangman!");
+    while &guess_count < &NUM_INCORRECT_GUESSES {
+        let mut guess_word: String = String::new();
+        for i in &guess_word_chars {
+            guess_word.push(*i);
+        }
+        if guess_word == secret_word {
+            println!(
+                "\nCongratulations you guessed the secret word: {}!",
+                secret_word
+            );
+            return;
+        }
+        println!("\nThe word so far is {}", guess_word);
+
+        let mut guess: String = String::new();
+        for i in &guess_chars {
+            if *i != '\n' && *i != '\r' {
+                guess.push(*i);
+            }
+        }
+        println!("You have guessed the following letters: {} ", guess);
+
+        println!(
+            "You have {} guesses left",
+            NUM_INCORRECT_GUESSES - guess_count
+        );
+
+        println!("Please guess a letter: ");
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Error reading line.");
+
+        guess_chars = guess.chars().collect();
+        let ch = guess_chars[guess_chars.len() - 2];
+        let mut idx: usize = 0;
+
+        while idx < secret_word_chars.len() {
+            if secret_word_chars[idx] == ch && guess_word_chars[idx] == '-' {
+                guess_word_chars[idx] = ch;
+                break;
+            }
+            idx += 1;
+        }
+
+        if idx == secret_word_chars.len() {
+            guess_count += 1;
+            println!("Sorry, that letter is not in the word");
+        }
+    }
+
+    println!("\nSorry, you ran out of guesses");
 }
