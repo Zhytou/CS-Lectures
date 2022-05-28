@@ -25,7 +25,9 @@ You can borrow a value using reference instead of taking ownership of the value.
 ### Mutable References
 
 Use a *mutable reference* to modify a borrowed value.
-Howerve, mutable references have one big restriction: you can have only one mutable reference to a particular piece of data at a time.
+However, mutable references have one big restriction: you can have only one mutable reference to a particular piece of data at a time.
+
+You can have several borrowing references or one mutable reference(the mutable variables should not be modified at same time) at one time.
 
 ### Dangling References
 
