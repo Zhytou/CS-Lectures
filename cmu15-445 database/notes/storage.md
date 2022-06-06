@@ -60,12 +60,40 @@ There are three different notions of "pages" in a DBMS:
 + OS Page(4K)
 + Database Page(512B-16KB)
 
-#### DATABASE HEAP FILE ORGANAZATION 
+#### DATABASE HEAP FILE ORGANAZATION
 
-PAGE DIRECTORY
+Page diretctory is a special page that the DBMS maitains to track the location of data pages in the database files.
 
 ### PAGE LAYOUT
 
+Every page contains a header of metadata about the page's contents.
+
++ page size
++ checksum
++ DBMS version
++ ...
+
+#### SLOTTED PAGE
+
+Slotted Pages: Page maps slots to offsets.
+
++ Header keeps track of the number of used slots, the offset of the starting location of the last used slot, and a slot array, which keeps track of the location of the start of each tuple.
++ To add a tuple, the slot array will grow from the beginning to the end, and the data of the tuples will grow from end to the beginning. The page is considered full when the slot array and the tuple data meet.
+
+#### LOG-STRUCTURED FILE ORGANIZATION
+
+Instead of storing tuples in pages, the DBMS only stores log records about how the database was modified.
+
+Comparing to the slotted page orgnization, this way make the best use of better performance on sequential read/write than random read/write.
+
 ### TUPLE LAYOUT
 
+### DATA REPRESPENTATION
+
+### SYSTEM CATALOGS
+
+### STORAGE MODEL
+
 ## HOW THE DBMS MANAGES ITS MEMORY AND MOVE DATA BACK-AND-FORTH FROM DISK?
+
+> it is covered in buffer pool.md.
