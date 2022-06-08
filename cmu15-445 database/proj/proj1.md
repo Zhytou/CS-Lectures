@@ -44,6 +44,7 @@ if (is_dirty) {
 ```
 
 + 在BufferPoolManagerInstance的DeletePgImp函数里，记得要把脏页写入磁盘。
+
 ``` c++
 if (pages_[frame_id].IsDirty()) {
     disk_manager_->WritePage(page_id, pages_[frame_id].GetData());

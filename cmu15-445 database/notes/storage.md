@@ -1,12 +1,12 @@
-# DATABASE STORAGE
+# Database Storage
 
 > Database is a bunch of layers built on top pf each other. From the bottom to the top, the layer is disk manager, buffer pool manager, access method, operation excution and query planning.
 
-## DISK-ORIENTED ARCHITECTURE
+## Disk-Oreinted Architecture
 
 The course focuses on disk-oriented DBMS, which means that the primary storage location of the database is on non-volatile disk.
 
-### STORAGE HIERARCHY
+### Storage Hierachy
 
 CPU Register, CPU Cache
 
