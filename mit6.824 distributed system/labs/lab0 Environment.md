@@ -51,7 +51,7 @@ go env -w GOPROXY=https://proxy.golang.com.cn,direct
 + 请在终端手动执行命令
 
 ``` bash
-go get -u -v github.com/go-delve/delve/cmd/dlv@1.7.3
+go install -v github.com/go-delve/delve/cmd/dlv@1.7.3
 ```  
 
 + 检查安装是否成功
